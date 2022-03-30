@@ -248,5 +248,5 @@ def get_ratings(symbols):
     return comb[:10]
 
         
-#get_ratings(fivehuna)
+get_ratings(fivehuna)
 ratios(fivehuna)

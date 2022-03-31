@@ -11,6 +11,9 @@ import smtplib
 
 import concurrent.futures
 
+import tkinter as tk                                    #GUI
+import PySimpleGUI as sg
+
 
 from collections import OrderedDict
 
@@ -36,7 +39,11 @@ DiffTot = [None] * len(fivehuna)
 
 count = len(fivehuna)
 
-speed = 20
+speed = 1
+
+
+
+
 
 
 def ratios(symbols):
@@ -247,6 +254,29 @@ def get_ratings(symbols):
     print(comb[:10])
     return comb[:10]
 
-        
-get_ratings(fivehuna)
-ratios(fivehuna)
+
+sg.theme('DarkAmber')   
+
+layout = [  [sg.Text('Submit your csv file containing the stocks to analyze:')],
+            [sg.Input(), sg.FileBrowse()],
+            [sg.OK(), sg.Cancel()]]
+
+
+window = sg.Window('Window Title', layout)
+
+while True:             
+    event, values = window.read()
+    get_ratings(fivehuna)
+    ratios(fivehuna)
+    if event in (sg.WIN_CLOSED, 'Cancel'):
+        break
+
+window.close()
+
+
+
+
+
+
+
+
